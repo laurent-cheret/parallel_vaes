@@ -47,4 +47,5 @@ class VGG16FeatureExtractor(nn.Module):
         # Forward pass through the feature extractor
         features = self.features(x)
         output = self.gap_layer(features).squeeze()
+        output = output.view(output.size(0), -1)
         return output

@@ -31,7 +31,8 @@ class MultiEncodersVAE(pl.LightningModule):
             mu, logvar, z = encoder(x)
             qz_params.append([mu,logvar])
             latents.append(z)
-        concat_latents = torch.cat(latents, dim=1)
+        concat_latents = torch.cat(latents, dim=0)
+        print(concat_latents.shape)
         decoded = self.decoder(concat_latents)
         class_logits = self.classifier(concat_latents)
 
