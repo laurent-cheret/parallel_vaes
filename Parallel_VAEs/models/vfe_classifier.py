@@ -11,10 +11,6 @@ from .multi_encoders_vae import MultiEncodersVAE
 class VFE_classifier(pl.LightningModule):
     def __init__(self, num_vaes, input_dim, hidden_dim, latent_dim, num_classes):
         super(VFE_classifier, self).__init__()
-        self.input_dim = input_dim
-        self.hidden_dim = input_dim
-        self.latent_dim = input_dim
-        self.num_classes = num_classes
         self.feat_extract = VGG16FeatureExtractor()
         # self.feat_extract = SmallCNNFeatureExtractor(3)
         self.vfe = MultiEncodersVAE(num_vaes, input_dim, hidden_dim, latent_dim, num_classes)
